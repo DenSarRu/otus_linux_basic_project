@@ -24,7 +24,7 @@ sed -i '16i\- type: filestream\n  paths:\n    - \/var\/log\/nginx\/*.log\n\n  en
 sed -i "s/output.elasticsearch/#output.elasticsearch/" /etc/filebeat/filebeat.yml
 sed -i 's/hosts: \[\"localhost:9200\"\]/#hosts: \[\"localhost:9200\"\]/' /etc/filebeat/filebeat.yml
 sed -i 's/preset: balanced/#preset: balanced/' /etc/filebeat/filebeat.yml
-sed -i 's/#output.logstash:/output.logstash:\n  hosts: \["$monitor_ip:5400"\]/' /etc/filebeat/filebeat.yml
+sed -i "s/#output.logstash:/output.logstash:\n  hosts: ['${monitor_ip}:5400']/" /etc/filebeat/filebeat.yml
 
 systemctl restart filebeat
 
